@@ -1,5 +1,5 @@
 import unittest
-from main import generate_random_number, human_guess
+from main import generate_random_number, human_guess, computer_guess
 
 class TestGuessTheNumber(unittest.TestCase):
 
@@ -18,6 +18,39 @@ class TestGuessTheNumber(unittest.TestCase):
         result, success = human_guess(player_number, random_number)
         self.assertEqual(result, "¡Número correcto! Adivinaste el número")
         self.assertTrue(success)
+
+        #Prueba para un número mayor que el número secreto
+        player_number = 50
+        random_number = 20
+        result, success = human_guess(player_number, random_number)
+        self.assertEqual(result, "Tu número es muy alto.")
+        self.assertFalse(success)
+
+        #Prueba para un número menor que el número secreto
+        player_number = 5
+        random_number = 20
+        result, success = human_guess(player_number, random_number)
+        self.assertEqual(result, "Tu número es muy bajo.")
+        self.assertFalse(success)
+
+    def test_computer_guess(self):
+        random_number = 40
+        computer_number = 40
+        result, success = computer_guess(computer_number, random_number)
+        self.assertEqual(result, "El ordenador adivina: 40. ¡Número correcto! La computadora adivinó el número")
+        self.assertTrue(success)
+
+        random_number = 40
+        computer_number = 50
+        result, success = computer_guess(computer_number, random_number)
+        self.assertEqual(result, "El ordenador adivina: 50. El número es muy alto")
+        self.assertFalse(success)
+
+        random_number = 40
+        computer_number = 30
+        result, success = computer_guess(computer_number, random_number)
+        self.assertEqual(result, "El ordenador adivina: 30. El número es muy bajo")
+        self.assertFalse(success)
 
 if __name__ == "__main__":
     unittest.main()

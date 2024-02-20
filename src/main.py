@@ -11,10 +11,9 @@ def human_guess(player_number, random_number):
     else:
         return 'Tu número es muy bajo.', False
 
-def computer_guess(random_number):
-    computer_number = random.randint(1, 100)
+def computer_guess(computer_number, random_number):
     if computer_number == random_number:
-        return f'El ordenador adivina: {computer_number}. ¡Número correcto! Adivinaste el número', True
+        return f'El ordenador adivina: {computer_number}. ¡Número correcto! La computadora adivinó el número', True
     elif computer_number > random_number:
         return f'El ordenador adivina: {computer_number}. El número es muy alto', False
     else:
@@ -31,7 +30,8 @@ def guess_the_number():
         if player_success:
             break
 
-        computer_message, computer_success = computer_guess(random_number)
+        computer_number = random.randint(1, 100)
+        computer_message, computer_success = computer_guess(computer_number, random_number)
         print(computer_message)
         if computer_success:
             break
