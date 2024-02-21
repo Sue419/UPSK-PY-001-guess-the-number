@@ -24,15 +24,15 @@ def guess_the_number():
     random_number = generate_random_number()
     print("¡Adivina el número!")
 
-    player_guesses = 0
-    computer_guesses = 0
+    player_guesses =[]
+    computer_guesses = []
 
     while True:
         player_number = int(input('Ingrese un número: '))
         player_message, player_success = human_guess(player_number, random_number)
         print(player_message)
 
-        player_guesses += 1
+        player_guesses.append(player_number)
 
         if player_success:
             break
@@ -41,14 +41,14 @@ def guess_the_number():
         computer_message, computer_success = computer_guess(computer_number, random_number)
         print(computer_message)
 
-        computer_guesses += 1
+        computer_guesses.append(computer_number)
 
         if computer_success:
             break
     
-    #Número de intentos
-    print(f"Cantidad de intentos realizados por el jugador: {player_guesses}")
-    print(f"Cantidad de intentos del computador: {computer_guesses}")
+    # Lista de números de los intentos
+    print(f"Suposiciones del jugador: {player_guesses}")
+    print(f"Suposiciones del computador: {computer_guesses}")
 
     play_again = input('¿Quieres jugar de nuevo? (si/no)? ')
     return play_again.lower() == 'si'
